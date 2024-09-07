@@ -38,7 +38,6 @@ export const Allcard = () => {
       <div>
         {" "}
         {todolist.map((element, id) => {
-          //   if (element.select.value === "todo")
           return (
             <div key={id}>
               <div className="text-black">{element.select}</div>
