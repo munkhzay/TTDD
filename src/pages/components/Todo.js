@@ -13,11 +13,6 @@ const Card = (props) => {
   );
 };
 const cards = ["Select status", "todo", "inprogress", "done", "blocked"];
-const cards2 = [["HFF", "sdhkfkjdshf"], ["ksdjhfkjsd", "skdhfkudsj"], [], []];
-const card = ["todo"];
-const card1 = ["progress"];
-const card2 = ["done"];
-const card3 = ["blocked"];
 
 export const Allcard = () => {
   const [todolist, setTodolist] = useState([]);
@@ -27,53 +22,36 @@ export const Allcard = () => {
   const [text, setText] = useState("");
   const [select, setSelect] = useState();
   const [add, setAdd] = useState();
-  const [renderText, setRenderText] = useState(0);
+  const [renderText, setRenderText] = useState("");
   const [inputValue, setInputValue] = useState();
+
   const Value = (gg) => {
     setText(gg.target.value);
   };
+
   const Select = (jjj) => {
     setSelect(jjj.target.value);
   };
   const Allvalue = () => {
-    // const list = { text: text, select: select };
-    // if (cards[0] === select) setTodolist([...todolist, list]);
-    // const ToDo = () => {
     if (cards[1] === select) {
-      const list = { text: text, select: select };
+      const list = text;
       setTodolist([...todolist, list]);
     }
 
     if (cards[2] === select) {
-      const list = { text: text, select: select };
+      const list = text;
       setProgresslist([...progresslist, list]);
     }
     if (cards[3] === select) {
-      const list = { text: text, select: select };
+      const list = text;
       setDonelist([...donelist, list]);
     }
     {
       if (cards[4] === select) {
-        const list = { text: text, select: select };
+        const list = text;
         setBlockedlist([...blockedlist, list]);
       }
     }
-  };
-  const Todo = (props) => {
-    const { Select } = props;
-    const id = Math.random;
-    return (
-      <div>
-        {todolist.map((element, id) => {
-          return (
-            <div key={id}>
-              <div className="text-white">{element.text}</div>
-              <div className="text-white">{element.select}</div>
-            </div>
-          );
-        })}
-      </div>
-    );
   };
   const random = {
     0: "todo",
@@ -82,55 +60,8 @@ export const Allcard = () => {
     3: "blocked",
   };
   const allList = [[todolist], [progresslist], [donelist], [blockedlist]];
-
-  // const Progress = () => {
-  //   return (
-  //     <div>
-  //       {" "}
-  //       {progresslist.map((element, id) => {
-  //         return (
-  //           <div key={id}>
-  //             <div className="text-white">{element.text}</div>
-  //             <div className="text-white">{element.select}</div>
-  //           </div>
-  //         );
-  //       })}
-  //     </div>
-  //   );
-  // };
-  // const Done = () => {
-  //   return (
-  //     <div>
-  //       {" "}
-  //       {donelist.map((element, id) => {
-  //         return (
-  //           <div key={id}>
-  //             <div className="text-white">{element.text}</div>
-  //             <div className="text-white">{element.select}</div>
-  //           </div>
-  //         );
-  //       })}
-  //     </div>
-  //   );
-  // };
-  // const Blocked = () => {
-  //   return (
-  //     <div>
-  //       {" "}
-  //       {blockedlist.map((element, id) => {
-  //         return (
-  //           <div key={id}>
-  //             <div className="text-white">{element.text}</div>
-  //             <div className="text-white">{element.select}</div>
-  //           </div>
-  //         );
-  //       })}
-  //     </div>
-  //   );
-  // };
-
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center ">
       {" "}
       <button onClick={""} className="border p-4 bg-green-600 rounded-xl">
         Add task
@@ -138,56 +69,20 @@ export const Allcard = () => {
       <div className="flex gap-3 ">
         {allList.map((card, index) => {
           return (
-            <div className="bg-gray-500 w-full h-[300px] flex flex-col">
-              <p> {random[index]} </p>
-              {card.map((onetask) => {
-                return <div> {onetask} </div>;
+            <div className="bg-gray-700 w-[280px] p-5  h-[500px] border rounded-lg flex flex-col">
+              <p className="text-white"> {random[index]} </p>
+              {card.map((onetask, index) => {
+                console.log(onetask);
+                return (
+                  <div key={index} className="">
+                    {" "}
+                    {onetask}{" "}
+                  </div>
+                );
               })}
             </div>
           );
         })}
-      </div>
-      <div className="flex justify-center   gap-4 ">
-        <div className="w-[280px] h-[672px] border rounded-md bg-gray-800">
-          {card.map((card) => {
-            return (
-              <div>
-                <Card title={card}></Card>
-                {/* <Todo></Todo> */}
-              </div>
-            );
-          })}
-        </div>
-        <div className="w-[280px] h-[672px] border rounded-md bg-gray-800">
-          {card1.map((card) => {
-            return (
-              <div>
-                <Card title={card}></Card>
-                {/* <Progress></Progress> */}
-              </div>
-            );
-          })}
-        </div>
-        <div className="w-[280px] h-[672px] border rounded-md bg-gray-800">
-          {card2.map((card) => {
-            return (
-              <div>
-                <Card title={card}></Card>
-                {/* <Done></Done> */}
-              </div>
-            );
-          })}
-        </div>
-        <div className="w-[280px] h-[672px] border rounded-md bg-gray-800">
-          {card3.map((card) => {
-            return (
-              <div>
-                <Card title={card}></Card>
-                {/* <Blocked></Blocked> */}
-              </div>
-            );
-          })}
-        </div>
       </div>
       <div className="border w-80 flex flex-col gap-6 p-5">
         <p className="text-black"> Enter task</p>
