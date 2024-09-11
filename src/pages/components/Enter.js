@@ -7,7 +7,6 @@ const Entertask = () => {
       <select>
         <div>
           {cards.map((card, index) => {
-            console.log(card);
             return <option key={index}>{card}</option>;
           })}
         </div>
