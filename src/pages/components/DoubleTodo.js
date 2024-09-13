@@ -1,5 +1,4 @@
 // const cards = ["Select status", "todo", "inprogress", "done", "blocked"];
-// const cards2 = [["HFF", "sdhkfkjdshf"], ["ksdjhfkjsd", "skdhfkudsj"], [], []];
 
 // export const Allcard = () => {
 //   const random = {
