@@ -1,19 +1,7 @@
 import Link from "next/link";
 import { useState } from "react";
 
-const Card = (props) => {
-  const { title, list } = props;
-  return (
-    <div className=" ">
-      <div className="">
-        <p className="text-white text-center">{title}</p>
-        <h1 className="text-white">{list}</h1>
-      </div>
-    </div>
-  );
-};
 const cards = ["Select status", "todo", "inprogress", "done", "blocked"];
-
 export const Allcard = () => {
   const [todolist, setTodolist] = useState([]);
   const [progresslist, setProgresslist] = useState([]);
@@ -23,36 +11,37 @@ export const Allcard = () => {
   const [select, setSelect] = useState();
   const [add, setAdd] = useState();
   const [renderText, setRenderText] = useState("");
-  const [inputValue, setInputValue] = useState();
-
+  let [inputValue, setInputValue] = useState();
+  let [selectValue, setSelectValue] = useState();
   const Value = (gg) => {
     setText(gg.target.value);
   };
-
   const Select = (jjj) => {
     setSelect(jjj.target.value);
   };
   const Allvalue = () => {
     if (cards[1] === select) {
-      const list = text;
-      setTodolist([...todolist, list]);
+      setTodolist([...todolist, text]);
     }
-
     if (cards[2] === select) {
-      const list = text;
-      setProgresslist([...progresslist, list]);
+      setProgresslist([...progresslist, text]);
     }
     if (cards[3] === select) {
-      const list = text;
-      setDonelist([...donelist, list]);
+      setDonelist([...donelist, text]);
     }
     {
       if (cards[4] === select) {
-        const list = text;
-        setBlockedlist([...blockedlist, list]);
+        setBlockedlist([...blockedlist, text]);
       }
     }
+    setInputValue("");
+
+    setSelectValue(cards[0]);
   };
+  console.log(select);
+  console.log(inputValue);
+  console.log(selectValue);
+
   const random = {
     0: "todo",
     1: "inprogress",
@@ -93,7 +82,11 @@ export const Allcard = () => {
             className="border rounded-xl p-2"
             placeholder="Task name"
           ></input>
-          <select onChange={Select} className="w-44 p-2 rounded-xl border">
+          <select
+            onChange={Select}
+            value={selectValue}
+            className="w-44 p-2 rounded-xl border"
+          >
             {cards.map((card, index) => {
               return (
                 <option className="text-black" key={index}>
