@@ -1,46 +1,33 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const cards = ["Select status", "todo", "inprogress", "done", "blocked"];
 export const Allcard = () => {
   const [todolist, setTodolist] = useState([]);
-  const [progresslist, setProgresslist] = useState([]);
-  const [donelist, setDonelist] = useState([]);
-  const [blockedlist, setBlockedlist] = useState([]);
+  // const [progresslist, setProgresslist] = useState([]);
+  // const [donelist, setDonelist] = useState([]);
+  // const [blockedlist, setBlockedlist] = useState([]);
   const [text, setText] = useState("");
   const [select, setSelect] = useState();
-  const [add, setAdd] = useState();
-  const [renderText, setRenderText] = useState("");
-  let [inputValue, setInputValue] = useState();
-  let [selectValue, setSelectValue] = useState();
-  const Value = (gg) => {
-    setText(gg.target.value);
-  };
-  const Select = (jjj) => {
-    setSelect(jjj.target.value);
-  };
-  const Allvalue = () => {
-    if (cards[1] === select) {
-      setTodolist([...todolist, text]);
-    }
-    if (cards[2] === select) {
-      setProgresslist([...progresslist, text]);
-    }
-    if (cards[3] === select) {
-      setDonelist([...donelist, text]);
-    }
-    {
-      if (cards[4] === select) {
-        setBlockedlist([...blockedlist, text]);
-      }
-    }
-    setInputValue("");
+  const alltext = setTodolist([...todolist, text, select]);
 
-    setSelectValue(cards[0]);
-  };
-  console.log(select);
-  console.log(inputValue);
-  console.log(selectValue);
+  // const Allvalue = () => {
+  //   if (cards[1] === select) {
+  //     setTodolist([...todolist, text]);
+  //   }
+  //   if (cards[2] === select) {
+  //     setProgresslist([...progresslist, text]);
+  //   }
+  //   if (cards[3] === select) {
+  //     setDonelist([...donelist, text]);
+  //   }
+
+  //   if (cards[4] === select) {
+  //     setBlockedlist([...blockedlist, text]);
+  //   }
+  //   setSelect(cards[0]);
+  //   setText("");
+  // };
 
   const random = {
     0: "todo",
@@ -48,7 +35,7 @@ export const Allcard = () => {
     2: "done",
     3: "blocked",
   };
-  const allList = [[todolist], [progresslist], [donelist], [blockedlist]];
+  // const allList = [[todolist], [progresslist], [donelist], [blockedlist]];
   return (
     <div className="flex flex-col items-center ">
       {" "}
@@ -56,7 +43,10 @@ export const Allcard = () => {
         Add task
       </button>
       <div className="flex gap-3 ">
-        {allList.map((card, index) => {
+        {todolist.map((list) => {
+          list.select.filter((tlist) => tlist.select.includes("todo"));
+        })}
+        {/* {allList.map((card, index) => {
           return (
             <div className="bg-gray-700 w-[280px] p-5  h-[500px] border rounded-lg flex flex-col">
               <p className="text-white"> {random[index]} </p>
@@ -71,20 +61,21 @@ export const Allcard = () => {
               })}
             </div>
           );
-        })}
+        })} */}
       </div>
       <div className="border w-80 flex flex-col gap-6 p-5">
         <p className="text-black"> Enter task</p>
         <div className="flex flex-col w-52 gap-4 items-center">
           <input
-            onChange={Value}
-            value={inputValue}
+            type="text"
+            onChange={(e) => setText(e.target.value)}
+            value={text}
             className="border rounded-xl p-2"
             placeholder="Task name"
           ></input>
           <select
-            onChange={Select}
-            value={selectValue}
+            onChange={(s) => setSelect(s.target.value)}
+            value={select}
             className="w-44 p-2 rounded-xl border"
           >
             {cards.map((card, index) => {
@@ -97,7 +88,7 @@ export const Allcard = () => {
           </select>
         </div>
         <button
-          onClick={Allvalue}
+          onClick={alltext}
           className="border p-2 bg-green-600 rounded-xl"
         >
           Submit
